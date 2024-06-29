@@ -6,7 +6,6 @@ Get to-do progress of an employee
 import requests
 import sys
 
-
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: ./script.py <employee_id>")
@@ -18,8 +17,8 @@ if __name__ == '__main__':
         print("The employee ID must be an integer.")
         sys.exit(1)
 
-    user_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
-    todos_url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
     try:
         user_info = requests.get(user_url).json()

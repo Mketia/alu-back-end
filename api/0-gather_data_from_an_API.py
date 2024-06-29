@@ -6,6 +6,7 @@ Get to-do progress of an employee
 import requests
 import sys
 
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: ./script.py <employee_id>")
@@ -27,10 +28,11 @@ if __name__ == '__main__':
         print(f"Error fetching data: {e}")
         sys.exit(1)
 
-    employee_name = user_info.get("name")
-    if not employee_name:
+    if "name" not in user_info:
         print("Employee not found.")
         sys.exit(1)
+
+    employee_name = user_info["name"]
 
     task_completed = [task for task in todos_info if task.get("completed") is True]
     number_of_done_tasks = len(task_completed)
@@ -39,4 +41,4 @@ if __name__ == '__main__':
     print("Employee {} is done with tasks({}/{}):".format(employee_name, number_of_done_tasks, total_number_of_tasks))
 
     for task in task_completed:
-        print("\t {}".format(task.get("title")))
+        print("\t {}".format(task["title"]))
